@@ -7,6 +7,9 @@
 // EX: Input: head = [1,2]
 //     Output: [2,1]
 
+// TIME COMPLEXITY: O(n)
+// SPACE COMPLEXITY: O(1)
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
