@@ -17,3 +17,10 @@ DYNAMIC PROGRAMMING
     4. Find the BASE CASES:
         - Use logical thinking to figure the subproblems that can be solved without using dynamic programming. Solutions to the rest of the subproblems will often build           on these base cases  
 
+    5. OPTIONAL:
+        - Find the top-down approach (the recursive solution, where we start with the original problem (the top) and recurse all the way down to the base cases)
+        - Use the top-down approach to implement the bottom-up approach (the iterative solution, where we oftens start with the bases cases and build up all the way to             the original problem)
+
+
+SOURCE:
+LeetCode's Dynamic Programming Explore Card (https://leetcode.com/explore/learn/card/dynamic-programming/630/an-introduction-to-dynamic-programming/)
