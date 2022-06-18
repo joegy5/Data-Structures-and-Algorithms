@@ -16,8 +16,9 @@ DYNAMIC PROGRAMMING
         - This is often the most difficult part of solving the problem.
     4. Find the BASE CASES:
         - Use logical thinking to figure the subproblems that can be solved without using dynamic programming. Solutions to the rest of the subproblems will often build           on these base cases  
-
-    5. OPTIONAL:
+    5. MEMOIZATION:
+        - Use the data structure/function from step 2 to memoize, or store, results from previous subproblems that have already been solved so that no unneccessary                 computations need to be performed for subproblems that have already been solved before. 
+    7. OPTIONAL:
         - Find the top-down approach (the recursive solution, where we start with the original problem (the top) and recurse all the way down to the base cases)
         - Use the top-down approach to implement the bottom-up approach (the iterative solution, where we oftens start with the bases cases and build up all the way to             the original problem)
 
