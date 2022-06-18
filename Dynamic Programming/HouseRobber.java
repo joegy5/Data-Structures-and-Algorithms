@@ -34,6 +34,7 @@
 // TIME COMPLEXITY: O(n)
 // SPACE COMPLEXITY O(n)
 
+// NOTE: I did not come up with these solutions on my own, I did get help to understand the proper solutions
 
 class Solution {
     public int rob(int[] nums) {
