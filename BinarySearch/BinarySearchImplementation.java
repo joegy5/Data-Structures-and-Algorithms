@@ -9,6 +9,8 @@
 // This reduces the time complexity of a linear search, which is O(n), to O(log n), where the base of the log is 2, as each
 // time the search window that we are looking at in the array is being divided by 2.
 
+// NOTE: binary search only works on sorted arrays, as we can compare where the target might be based on how small or big the current number at the middle index is, compared to the target
+
 public class Main {
 
     public static void main(String[] args) {
