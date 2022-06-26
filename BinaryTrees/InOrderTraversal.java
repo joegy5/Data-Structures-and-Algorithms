@@ -41,6 +41,49 @@ class Solution {
 // ITERATIVE SOLUTION 
 // NOTE: I did not come up with this solution on my own. 
 
+// INTUITION:
+// Use a stack to keep track of root nodes that have children. We keep iterating to the left node of each current node and adding it to the stack so that we can come back to that node later to see if it also has a right child 
+// Once we used all the elements in the stack and line temp = temp.right (line 83) makes the temp node become null, we are done and can return the resulting list.
 
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+
+    
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> ans = new LinkedList<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        
+        TreeNode temp = root;
+        while(temp != null || !stack.isEmpty()) {
+            while(temp != null) {
+                stack.push(temp);
+                
+                temp = temp.left;
+                
+            }
+            
+            if(!stack.isEmpty()) {
+                temp = stack.pop();
+            }
+            ans.add(temp.val);
+            temp = temp.right;
+        }
+        return ans;
+    }
+}
 
 
