@@ -36,6 +36,8 @@
 // We can define our helper function as the recursive function that takes in the current indices of the two strings. We start at the beginning of both strings, hence our first helper call being "helper(0,0)"
 // We also use a 2D array to memoize our results to avoid any possible unnecessary recomputations. 
 
+// TIME COMPLEXITY: O(MN), where M is the length of text1 and N is the length of text2
+// SPACE COMPLEXITY: O(MN)
 
 class Solution {
     int[][] memo;
