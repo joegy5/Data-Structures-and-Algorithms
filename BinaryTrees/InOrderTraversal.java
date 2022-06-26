@@ -39,7 +39,7 @@ class Solution {
 }
 
 // ITERATIVE SOLUTION 
-// NOTE: I did not come up with this solution on my own. 
+// NOTE: I did not come up with this solution entirely on my own. 
 
 // INTUITION:
 // Use a stack to keep track of root nodes that have children. We keep iterating to the left node of each current node and adding it to the stack so that we can come back to that node later to see if it also has a right child 
