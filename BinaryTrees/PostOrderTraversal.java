@@ -1,3 +1,7 @@
+// PROBLEM DESCRIPTION: Given the root of a binary tree, return the postorder traversal of its nodes' values.
+
+// A postorder traversal is where we look at the left child node, then the right child node, then the actual root node last. 
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -28,3 +32,10 @@ class Solution {
         return ans;
     }
 }
+
+// ITERATIVE SOLUTION
+
+// INTUITION: 
+
+
+
