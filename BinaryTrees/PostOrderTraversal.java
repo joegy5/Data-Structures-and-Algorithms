@@ -34,8 +34,40 @@ class Solution {
 }
 
 // ITERATIVE SOLUTION
+// NOTE: I did not come up with this solution on my own
 
 // INTUITION: 
+// Here we can take advantange of the addFirst function of the List interface, which adds a given object to the beginning of the list.
+// We add TreeNodes to the stack in the reverse order that we want them to be in the list, and then in the next iteration of the while loop, we simply add the top element of the stack to the beginning of the list
+// So that it gets added in the right order 
+// We then repeat the process again until the stack is empty, meaning that we have finished looking at all the elements. 
 
-
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        
+        List<Integer> ans = new LinkedList<Integer>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        
+        if(root == null) {
+            return ans;
+        }
+        
+        
+        stack.push(root);
+        
+        while(!stack.isEmpty()) {
+            TreeNode temp = stack.pop();
+            ans.addFirst(temp.val);
+            
+            if(temp.left != null) {
+                stack.push(temp.left);
+            }
+            if(temp.right != null) {
+                stack.push(temp.right);
+            }
+        }
+    
+        return ans;
+    }
+}
 
