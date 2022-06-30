@@ -1,3 +1,6 @@
+// NOTE: This is what I learned from leetcode. This is not my own implementation of the disjoint set data structure. 
+
+
 public class QuickFindDisjointSet {
 
     private int[] root;
