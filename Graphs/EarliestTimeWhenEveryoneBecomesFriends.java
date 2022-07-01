@@ -62,8 +62,6 @@ class Solution {
             union(logs[map.get(times[i])][1], logs[map.get(times[i])][2]);
             
             if(numIsolated == 1) return times[i];
-            //System.out.println("n: " + numIsolated);
-            //System.out.println("i: " + i);
         }
         
         
