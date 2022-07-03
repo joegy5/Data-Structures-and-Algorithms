@@ -30,6 +30,7 @@
 // We can then iterate over each neighbor of the current vertex that we are looking at, and call the recursive function again on each of those neighbors.
 // Before looping through the neighbors though, we have to keep track of what vertices we have already visited. This is to take care of graphs with cycles and make sure 
 // that the path we are currently recursing through doesn't have an already visited vertex yet (meaning that there was already another path with that vertex). 
+// If at any time we find the destination vertex, we can just set a flag boolean variable equal to true and the next time we recurse through the helper function, we can break out of the function by checking the state of that flag variable. 
 
 class Solution {
     private Map<Integer, List<Integer>> graph = new HashMap<Integer, List<Integer>>();
