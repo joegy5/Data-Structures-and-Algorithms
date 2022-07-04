@@ -22,9 +22,9 @@
 // Explanation: There is no path from vertex 0 to vertex 5.
 
 
-// NOTE: This is not my solution, the explanation is my understanding of the solution. 
+// NOTE: These are not my solutions, the explanations are my understanding of the solutions. 
 
-// INTUITION:
+// INTUITION (Recursive Solution):
 // We can use a hashmap that matches each vertex to a list containing all of its neighbors. 
 // We can then use a recursive helper function to go through each key in the map (each vertex) starting from the start vertex (given by the problem)
 // We can then iterate over each neighbor of the current vertex that we are looking at, and call the recursive function again on each of those neighbors.
@@ -76,3 +76,74 @@ class Solution {
         }
     }
 }
+
+// INTUITION (ITERATIVE SOLUTION):
+
+// With recursion we can have an inner call stack without actually using an auxillary data structures. However, with the help of a stack, we can do depth-first-search iteratively 
+// 
+// This time, we are using list containing lists (called an adjacency list) to store all the adjacent nodes (the contents inside each list within the adjacency list)
+// of the current vertex (represented by the current index of the adjacency list that we are looking at).
+// We then intialize our boolean array like before that checks which nodes (represented by the indices of the array) have already been visited
+// We can then perform the dfs using a stack. 
+
+// We first push the start node to the stack, then start our while loop (with our condition checking whether or not the stack is empty)
+// First thing we do is pop off the top element of the stack, then process it:
+// If we have already seen the element before, it means we are not on a valid path and we restart the while loop using the "continue" keyword 
+// Otherwise, we mark the element as seen in our boolean array, then look at all its adjacent nodes via the adjacency list. 
+// If any of those nodes are equal to the destination node, it means we have found a valid path and can return true. 
+// Otherwise, we push the element to the stack so that we can keep looking 
+
+// We first check at the top if the source node is equal to the destination node. If it is, we don't have to go through the algorithm at all as we can just return true.
+
+class Solution {
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        if(source == destination) {
+            return true;
+        }     
+        
+        List<List<Integer>> adj = new ArrayList<>();
+        
+        
+        for(int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
+        }
+    
+        for(int[] edge : edges) {
+            adj.get(edge[0]).add(edge[1]);
+            adj.get(edge[1]).add(edge[0]);
+        }
+    
+        Stack<Integer> stack = new Stack<Integer>();
+        stack.push(source);
+        boolean[] seen = new boolean[n];
+        
+        
+        while(!stack.isEmpty()) {
+            int curr = stack.pop();
+            
+            if(seen[curr]) {
+                continue;
+            }
+            
+            seen[curr] = true;
+        
+            for(int val : adj.get(curr)) {
+                if(val == destination) {
+                    return true;
+                }
+                
+                stack.push(val);
+            }
+        }
+    
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
