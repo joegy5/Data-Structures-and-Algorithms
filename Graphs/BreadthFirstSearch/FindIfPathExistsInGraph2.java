@@ -80,3 +80,56 @@ class Solution {
         }
     }
 }
+
+// Below is the iterative solution. Since this is a breadth first search, we use a queue (first in first out) to store the neighbors of the current vertex that we are looking at 
+// The first in first out concept instead of first in last out lets us check all the neighbors of each vertex first instead of going down a specific path before checking other neighbors.
+
+class Solution {
+    
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        Map<Integer, List<Integer>> graph = new HashMap<Integer, List<Integer>>();
+        boolean[] seen = new boolean[n];
+        
+        if(edges.length == 0) {
+            return true;
+        }
+        
+        for(int i = 0; i < n; i++) {
+            graph.put(i, new ArrayList<>());
+        }
+    
+        for(int[] edge : edges) {
+            graph.get(edge[0]).add(edge[1]);
+            graph.get(edge[1]).add(edge[0]);
+        }
+    
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(source);
+        
+        while(!queue.isEmpty()) {
+            int curr = queue.remove();
+           
+            if(curr == destination) {
+                return true;
+            }
+            
+            if(seen[curr]) {
+                continue;
+            }
+            seen[curr] = true;
+            
+            for(int neighbor : graph.get(curr)) {
+                queue.add(neighbor);
+            }
+        }
+    
+        return false;
+    }
+}
+
+
+
+
+
+
+
