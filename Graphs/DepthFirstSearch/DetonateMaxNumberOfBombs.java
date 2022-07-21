@@ -44,3 +44,77 @@
 // - Bomb 2 detonates bomb 3. The blue circle denotes the range of bomb 2.
 // - Bomb 3 detonates bomb 4. The green circle denotes the range of bomb 3.
 // Thus all 5 bombs are detonated.
+
+
+
+// NOTE: I did not come up with this solution on my own, the intuition is my understanding of the solution
+
+// INTUITION:
+
+// We can represent our situation using a graph.
+// Each edge in the graph connects two nodes (bombs) such that at least one of those bombs can cause the other one to detonate (this may not be true in the vice versa situation, meaning that this is a directed graph)
+// We could. construct the graph, or we could directly go into depth-first search.
+
+// Our depth first search algorithm goes like this:
+// Loop through each bomb (array) inside our bonbs 2D array
+   // Perform DFS on each bomb that we are looking at 
+// For each bomb, we then check all the bombs in the bomb array 
+// we check if any of those bombs are within detonation radius of the current bomb that we are performing DFS on
+// If this condition is true, and we haven't already visited the bomb that we are comparing to the current bomb that we are performing DFS on,
+// then we can recursively call the DFS function on that bomb.
+// First thing we do each time we enter the DFS function is increment the current number of bombs that we can detonate if we just detonated the current bomb that we are starting the DFS function on 
+// After the DFS recursive call stack is done, we can have another variable that will keep taking the max of itself and that number representing the current number of bombs that can be detonated by detonated the current bomb that we are looking at 
+
+class Solution {
+    int[][] bombs;
+    List<List<Integer>> graph = new ArrayList<>();
+    int numBombsDetonated;
+    
+    public int maximumDetonation(int[][] bombs) {
+        this.bombs = bombs;
+        
+        int ans = 0;
+        
+        for(int i = 0; i < bombs.length; i++) {
+            numBombsDetonated = 0;
+         // Each time, we set the number of bombs detonated equal to 0 to start our DFS search from each bomb.
+         // We also start with a boolean array called "visited" that starts out as containing all false values to show that none of the bombs have been visited when starting the DFS search for each bomb   
+            dfs(i, new boolean[bombs.length]);
+            ans = Math.max(ans, numBombsDetonated);
+        }
+        return ans;
+    }
+    
+    public void dfs(int bombIndex, boolean[] visited) {
+        numBombsDetonated++;
+        visited[bombIndex] = true;
+        
+        for(int i = 0; i < bombs.length; i++) {
+            
+            if(inRange(bombs[bombIndex], bombs[i]) && !visited[i]) {
+             // Mark each node that we visit as visted in our boolean array to make sure that we skip over already visited bombs to avoid entering infinite recursion.    
+             visited[i] = true;
+                dfs(i, visited);
+            }
+        }
+        
+    }
+
+    public boolean inRange(int[] a, int[] b) {
+     // Check if the bomb is in range by using geometry (Pythagorean Theorem to check if the distance between the centers of the bombs that we are comparing is less than or equal to the bomb radius    
+     // We use longs instead of ints to prevent overflow 
+     long dx = a[0] - b[0], dy = a[1] - b[1], dRadius = a[2];
+        return dx * dx + dy * dy <= dRadius * dRadius;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
